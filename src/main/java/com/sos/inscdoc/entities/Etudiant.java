@@ -47,6 +47,11 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Etudiant.findByDanteN", query = "SELECT e FROM Etudiant e WHERE e.danteN = :danteN")})
 public class Etudiant implements Serializable {
     private static final long serialVersionUID = 1L;
+    /**************
+    ***Attributes**
+    ***************/
+    
+    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
