@@ -23,7 +23,7 @@ public class EtudiantController implements Serializable{
     
     @Inject
     private EtudiantFacade etudiantService;
-    private Etudiant curent = new Etudiant();
+    private Etudiant current = new Etudiant();
     private List<Etudiant> etudiant;
 
     /**
@@ -32,22 +32,32 @@ public class EtudiantController implements Serializable{
     public EtudiantController() {
     }
 
-    public Etudiant getCurent() {
-        return curent;
+    public Etudiant getCurrent() {
+        return current;
     }
 
-    public void setCurent(Etudiant curent) {
-        this.curent = curent;
+    public void setCurrent(Etudiant current) {
+        this.current = current;
     }
     
+    public String showEdit(Etudiant etudiant){
+        current = etudiant;
+    return "edit?faces-redirect=true";
+    }
     
     public List<Etudiant> getAll(){
         return etudiantService.findAll();
     }
     
     public String doCreate(){
-        etudiantService.create(curent);
+        etudiantService.create(current);
     return "list?faces-redirect";
+    }
+    
+    public String doUpdate(){
+        
+        etudiantService.edit(current);
+        return "list?faces-redirect";
     }
     
 }
