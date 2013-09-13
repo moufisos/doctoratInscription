@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+    
+    <f:view contentType="text/html">
+        <h:head>
+            <f:facet name="first">
+                <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
+                <title>ajout sujet</title>
+            </f:facet>
+        </h:head>
+
+        <h:body>
+            
+            <h:form>
+                <p:panelGrid columns="3">
+                    <p:outputLabel value="intitulé :" />
+                    <p:inputText id="intitule" value="#{sujetController.current.intitule}"/>
+                    <p:message for="intitule" />
+                    
+                    <p:outputLabel value="description :" />
+                    <p:inputText id="description" value="#{sujetController.current.description}"/>
+                    <p:message for="description" />
+                    
+                    <p:outputLabel value="nombre de places :" />
+                    <p:inputText id="nplace" value="#{sujetController.current.nplace}"/>
+                    <p:message for="nplace" />
+                </p:panelGrid>
+                <h:commandButton value="ajouter" action="#{sujetController.doCreate}"/>
+            </h:form>
+
+        </h:body>
+
+    </f:view>
+</html>

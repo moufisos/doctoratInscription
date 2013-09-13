@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+    
+    <f:view contentType="text/html">
+        <h:head>
+            <f:facet name="first">
+                <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
+                <title>Liste Etudiant</title>
+            </f:facet>
+        </h:head>
+
+        <h:body>
+            <h:form>
+                <p:dataTable value="#{etudiantController.all}" var="etudiant">
+                <p:column headerText="Nom et Prenom">  
+                    <p:commandLink value="#{etudiant.nom}" />  
+        </p:column>  
+                <p:column headerText="CNE">  
+                    <h:outputText value="#{etudiant.cne}" />  
+        </p:column>  
+                <p:column headerText="CIN">  
+                    <h:outputText value="#{etudiant.cin}" />  
+        </p:column>             
+                <p:column headerText="Date de naissance">  
+                    <h:outputText value="#{etudiant.danteN}" />  
+                </p:column>
+                <p:column headerText="Adresse">  
+                    <h:outputText value="#{etudiant.adresse}" />  
+                </p:column>
+                <p:column headerText="email">  
+                    <h:outputText value="#{etudiant.email}" />  
+                </p:column>    
+                <p:column headerText="Nationalité">  
+                    <h:outputText value="#{etudiant.nationalite}" />  
+                </p:column>
+                <p:column headerText="Téléphone">  
+                    <h:outputText value="#{etudiant.telephone}" />  
+                </p:column>
+                <p:column headerText="fonctionnaire">  
+                    <h:outputText value="#{etudiant.fonctionnaire}" />  
+                </p:column>
+                <p:column headerText="marié">  
+                    <h:outputText value="#{etudiant.marie}" />  
+                </p:column>
+                    
+                <p:column style="width:4%">  
+                    <p:commandButton id="selectButton" value="modifier" action="#{etudiantController.showEdit(etudiant)}" />  
+                </p:column>  
+            </p:dataTable>
+            </h:form>
+
+        </h:body>
+
+    </f:view>
+</html>
