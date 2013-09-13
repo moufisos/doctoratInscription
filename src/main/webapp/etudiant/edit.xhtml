@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+    
+    <f:view contentType="text/html">
+        <h:head>
+            <f:facet name="first">
+                <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
+                <title>PrimeFaces</title>
+            </f:facet>
+        </h:head>
+
+        <h:body>
+            <h:form>
+                <p:panelGrid columns="3">
+                <p:outputLabel value="Nom" />
+                <p:inputText id="nom" value="#{etudiantController.current.nom}"/>  
+                <p:message for="nom"/>
+                
+                <p:outputLabel value="Prenom" />
+                <p:inputText id="prenom" value="#{etudiantController.current.prenom}" />  
+                <p:message for="prenom"/>
+                
+                <p:outputLabel value="CNE :" />  
+                <p:inputText id="cne" value="#{etudiantController.current.cne}" />  
+                <p:message for="cne"/>  
+                
+                <p:outputLabel value="CIN" />  
+                <p:inputText id="cin" value="#{etudiantController.current.cin}" />  
+                <p:message for="cin"/>         
+                
+                <p:outputLabel value="Date de naissance"/> 
+                <h:panelGrid columns="4" cellpadding="5">  
+                    <p:calendar pattern="dd MMM yyyy" yearRange="c-100" locale="fr" showButtonPanel="true" navigator="true" id="daten" value="#{etudiantController.current.danteN}"/>  
+                </h:panelGrid>  
+                <p:message for="daten"/>
+                
+                <p:outputLabel value="Adresse" />  
+                <p:inputText id="adresse" value="#{etudiantController.current.adresse}" />  
+                <p:message for="adresse"/>
+                
+                <p:outputLabel value="email" />  
+                <p:inputText id="email" value="#{etudiantController.current.email}" />  
+                <p:message for="email"/>    
+                
+                <p:outputLabel value="Nationalité" />  
+                <p:inputText id="nationalite" value="#{etudiantController.current.nationalite}" />  
+                <p:message for="nationalite"/>
+                
+                <p:outputLabel value="Téléphone" />  
+                <p:inputText id="telephone" value="#{etudiantController.current.telephone}" />  
+                <p:message for="telephone"/>
+                
+                <p:outputLabel value="fonctionnaire" />  
+                <p:selectOneMenu id="fonctionnaire" value="#{etudiantController.current.fonctionnaire}">  
+                    <f:selectItem itemLabel="Select One" itemValue="" />  
+                    <f:selectItem itemLabel="Fonctionnaire" itemValue="Fonctionnaire" />  
+                    <f:selectItem itemLabel="Sans Fonction" itemValue="Sans Fonction" />  
+                </p:selectOneMenu>  
+                <p:message for="fonctionnaire"/>
+                
+                <p:outputLabel value="marié" />  
+                <p:selectOneMenu id="marie" value="#{etudiantController.current.marie}">  
+                    <f:selectItem itemLabel="Select One" itemValue="" />  
+                    <f:selectItem itemLabel="Célibataire" itemValue="Célibataire" />  
+                    <f:selectItem itemLabel="Marié" itemValue="Marié" />  
+                </p:selectOneMenu>  
+                <p:message for="marie"/>
+                    
+                
+            </p:panelGrid>
+                <p:commandButton value="modifier" action="#{etudiantController.doUpdate}"/>
+            </h:form>
+
+        </h:body>
+
+    </f:view>
+</html>
