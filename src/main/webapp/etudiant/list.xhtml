@@ -19,38 +19,31 @@
                 <div class="span3 offset2">Liste des Cadres</div>
                 <p:messages for="update"/>
                 <h:form>
-                <p:dataTable value="#{etudiantController.all}" var="etudiant">
-                <p:column headerText="Nom et Prenom">  
-                    <p:commandLink value="#{etudiant.nom}" />  
-        </p:column>  
-                <p:column headerText="CNE">  
+                <p:dataTable value="#{etudiantController.all}" var="etudiant"
+                             paginator="true" rows="5" sortMode="multiple"
+                                     >
+                    <p:column filterBy="#{etudiant.cne}" headerText="CNE">  
                     <h:outputText value="#{etudiant.cne}" />  
         </p:column>  
                 <p:column headerText="CIN">  
                     <h:outputText value="#{etudiant.cin}" />  
-        </p:column>             
-                <p:column headerText="Date de naissance">  
-                    <h:outputText value="#{etudiant.danteN}" />  
-                </p:column>
-                <p:column headerText="Adresse">  
-                    <h:outputText value="#{etudiant.adresse}" />  
-                </p:column>
+        </p:column>
+                    <p:column filterBy="#{etudiant.nom}"
+                              headerText="Nom" sortBy="#{etudiant.nom}">  
+                        <h:outputText value="#{etudiant.nom}" />  
+        </p:column>  
+                   <p:column headerText="Nom et Prenom">  
+                    <h:outputText value="#{etudiant.prenom}" />  
+        </p:column> 
+                             
                 <p:column headerText="email">  
                     <h:outputText value="#{etudiant.email}" />  
                 </p:column>    
-                <p:column headerText="Nationalité">  
-                    <h:outputText value="#{etudiant.nationalite}" />  
-                </p:column>
-                <p:column headerText="Téléphone">  
-                    <h:outputText value="#{etudiant.telephone}" />  
-                </p:column>
+                
                 <p:column headerText="fonctionnaire">  
                     <h:outputText value="#{etudiant.fonctionnaire}" />  
                 </p:column>
-                <p:column headerText="marié">  
-                    <h:outputText value="#{etudiant.marie}" />  
-                </p:column>
-                    
+                
                 <p:column style="width:4%">  
                     <p:commandButton id="selectButton" value="modifier" action="#{etudiantController.showEdit(etudiant)}" />  
                 </p:column>  
