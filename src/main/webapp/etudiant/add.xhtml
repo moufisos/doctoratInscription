@@ -11,7 +11,7 @@
         <ui:composition template="../resources/template.xhtml">
             <ui:define name="left">
                 <h:form>
-                <p:commandLink value="Ajouter un sujet" action="#{sujetController.showCreate}"/><br />
+                    <p:commandLink value="Ajouter un sujet" action="#{sujetController.showList}"/><br />
                 </h:form>
             </ui:define>
             <ui:define name="content">	
@@ -21,45 +21,52 @@
                 <h:form>
                 <p:panelGrid columns="3">
                 <p:outputLabel value="Nom" />
-                <p:inputText id="nom" value="#{etudiantController.current.nom}"/>  
+                <p:inputText id="nom" value="#{etudiantController.newEtudiant.nom}" />  
                 <p:message for="nom"/>
                 
                 <p:outputLabel value="Prenom" />
-                <p:inputText id="prenom" value="#{etudiantController.current.prenom}" />  
+                <p:inputText id="prenom" value="#{etudiantController.newEtudiant.prenom}" />  
                 <p:message for="prenom"/>
                 
                 <p:outputLabel value="CNE :" />  
-                <p:inputText id="cne" value="#{etudiantController.current.cne}" />  
+                <p:inputText id="cne" value="#{etudiantController.newEtudiant.cne}" />  
                 <p:message for="cne"/>  
                 
                 <p:outputLabel value="CIN" />  
-                <p:inputText id="cin" value="#{etudiantController.current.cin}" />  
+                <p:inputText id="cin" value="#{etudiantController.newEtudiant.cin}" />  
                 <p:message for="cin"/>         
                 
                 <p:outputLabel value="Date de naissance"/> 
-                <h:panelGrid columns="4" cellpadding="5">  
-                    <p:calendar pattern="dd MMM yyyy" yearRange="c-100" locale="fr" showButtonPanel="true" navigator="true" id="daten" value="#{etudiantController.current.danteN}"/>  
-                </h:panelGrid>  
+                <p:calendar id="daten" value="#{etudiantController.newEtudiant.danteN}"
+                                mode="popup" pattern="dd/MM/yyyy" 
+                                yearRange="c-100" locale="fr"
+                                showButtonPanel="true" navigator="true"
+                                required="true" requiredMessage="Veuillez selectionnez une Date de naissance" />
                 <p:message for="daten"/>
                 
                 <p:outputLabel value="Adresse" />  
-                <p:inputText id="adresse" value="#{etudiantController.current.adresse}" />  
+                <p:inputText id="adresse" value="#{etudiantController.newEtudiant.adresse}" />  
                 <p:message for="adresse"/>
                 
                 <p:outputLabel value="email" />  
-                <p:inputText id="email" value="#{etudiantController.current.email}" />  
+                <p:inputText id="email" value="#{etudiantController.newEtudiant.email}"
+                             required="true" requiredMessage="Veuillez saisir une adresse email valid du type 'joe@doe.com' !!" 
+                             validatorMessage="Format d email invalid, Veuillez saisir une adresse email valid du type 'joe@doe.com' !!">
+                                <f:validateRegex
+		pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
+                            </p:inputText>
                 <p:message for="email"/>    
                 
                 <p:outputLabel value="Nationalité" />  
-                <p:inputText id="nationalite" value="#{etudiantController.current.nationalite}" />  
+                <p:inputText id="nationalite" value="#{etudiantController.newEtudiant.nationalite}" />  
                 <p:message for="nationalite"/>
                 
                 <p:outputLabel value="Téléphone" />  
-                <p:inputText id="telephone" value="#{etudiantController.current.telephone}" />  
+                <p:inputText id="telephone" value="#{etudiantController.newEtudiant.telephone}" />  
                 <p:message for="telephone"/>
                 
                 <p:outputLabel value="fonctionnaire" />  
-                <p:selectOneMenu id="fonctionnaire" value="#{etudiantController.current.fonctionnaire}">  
+                <p:selectOneMenu id="fonctionnaire" value="#{etudiantController.newEtudiant.fonctionnaire}">  
                     <f:selectItem itemLabel="Select One" itemValue="" />  
                     <f:selectItem itemLabel="Fonctionnaire" itemValue="Fonctionnaire" />  
                     <f:selectItem itemLabel="Sans Fonction" itemValue="Sans Fonction" />  
@@ -67,17 +74,17 @@
                 <p:message for="fonctionnaire"/>
                 
                 <p:outputLabel value="marié" />  
-                <p:selectOneMenu id="marie" value="#{etudiantController.current.marie}">  
+                <p:selectOneMenu id="marie" value="#{etudiantController.newEtudiant.marie}">  
                     <f:selectItem itemLabel="Select One" itemValue="" />  
-                    <f:selectItem itemLabel="Célibataire" itemValue="Célibataire" />  
-                    <f:selectItem itemLabel="Marié" itemValue="Marié" />  
+                    <f:selectItem itemLabel="Célibataire" itemValue="celibataire" />  
+                    <f:selectItem itemLabel="Marié" itemValue="marie" />  
                 </p:selectOneMenu>  
                 <p:message for="marie"/>
                     
                 
             </p:panelGrid>
-                <p:commandButton value="modifier" action="#{etudiantController.doUpdate}"/>
-            </h:form>
+                <h:commandButton value="ajouter" action="#{etudiantController.doCreate}"/>
+             </h:form>
 
             </ui:define>
         </ui:composition>

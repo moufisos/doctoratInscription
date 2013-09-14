@@ -23,6 +23,7 @@ public class SujetController implements Serializable {
 @Inject
 private SujetFacade sujetService;
 private Sujet current = new Sujet() ;
+private Sujet newSujet;
 private List<Sujet> sujets;
     
     /**
@@ -42,16 +43,33 @@ private List<Sujet> sujets;
     public void setCurrent(Sujet current) {
         this.current = current;
     }
+
+    public Sujet getNewSujet() {
+        return newSujet;
+    }
+
+    public void setNewSujet(Sujet newSujet) {
+        this.newSujet = newSujet;
+    }
     
     public String showEdit(Sujet sujet){
-        current = sujet;
+    current = sujet;
     return "edit?faces-redirect=true";
+    }
+    
+    public String showCreate(){
+     newSujet = new Sujet();
+     return "add?faces-redirect=true";
+    }
+    
+    public String showList(){
+        return "list?faces-redirect=true";
     }
     
     
     public String doCreate(){
         System.out.println("subject " + current.getIntitule() + " == " + current.getNplace());
-        sujetService.create(current);
+        sujetService.create(newSujet);
         return "list?faces-redirect=true";
     }
     

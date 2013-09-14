@@ -9,7 +9,6 @@ import com.sos.inscdoc.services.EtudiantFacade;
 import java.io.Serializable;
 import java.util.List;
 import javax.inject.Named;
-import javax.enterprise.context.Dependent;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 
@@ -19,18 +18,63 @@ import javax.inject.Inject;
  */
 @Named(value = "etudiantController")
 @SessionScoped
-public class EtudiantController implements Serializable{
-    
+public class EtudiantController implements Serializable {
+
+    // ======================================
+    // = Attributes =
+    // ======================================
     @Inject
     private EtudiantFacade etudiantService;
     private Etudiant current = new Etudiant();
+    private Etudiant newEtudiant = new Etudiant();
     private List<Etudiant> etudiant;
 
     /**
      * Creates a new instance of EtudiantController
      */
+    // ======================================
+    // = Attributes =
+    // ======================================
     public EtudiantController() {
     }
+
+    // ======================================
+    // = Navigations Methodes =
+    // ======================================
+    public String showEdit(Etudiant etudiant) {
+        current = etudiant;
+        return "edit?faces-redirect=true";
+    }
+
+    public String showList() {
+        this.newEtudiant = null;
+        return "list?faces-redirect=true";
+    }
+
+    public String showCreate() {
+        this.newEtudiant = new Etudiant();
+        return "add?faces-redirect=true";
+    }
+    // ======================================
+    // = Business Methodes =
+    // ======================================
+
+    public List<Etudiant> getAll() {
+        return etudiantService.findAll();
+    }
+
+    public String doCreate() {
+        etudiantService.create(newEtudiant);
+        return showList();
+    }
+
+    public String doUpdate() {
+        etudiantService.edit(current);
+        return "list?faces-redirect";
+    }
+    // ======================================
+    // = getters & setters =
+    // ======================================
 
     public Etudiant getCurrent() {
         return current;
@@ -39,25 +83,12 @@ public class EtudiantController implements Serializable{
     public void setCurrent(Etudiant current) {
         this.current = current;
     }
-    
-    public String showEdit(Etudiant etudiant){
-        current = etudiant;
-    return "edit?faces-redirect=true";
+
+    public Etudiant getNewEtudiant() {
+        return newEtudiant;
     }
-    
-    public List<Etudiant> getAll(){
-        return etudiantService.findAll();
+
+    public void setNewEtudiant(Etudiant newEtudiant) {
+        this.newEtudiant = newEtudiant;
     }
-    
-    public String doCreate(){
-        etudiantService.create(current);
-    return "list?faces-redirect";
-    }
-    
-    public String doUpdate(){
-        
-        etudiantService.edit(current);
-        return "list?faces-redirect";
-    }
-    
 }

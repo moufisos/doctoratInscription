@@ -1,25 +1,24 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!--
-To change this template, choose Tools | Templates
-and open the template in the editor.
--->
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:p="http://primefaces.org/ui">
-    
-    <f:view contentType="text/html">
-        <h:head>
-            <f:facet name="first">
-                <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
-                <title>Liste Etudiant</title>
-            </f:facet>
-        </h:head>
-
-        <h:body>
-            <h:form>
+    <h:head>
+        <h1>Liste des sujet</h1>
+    </h:head>
+    <h:body>
+        <ui:composition template="../resources/template.xhtml">
+            <ui:define name="left">
+                <h:form>
+                <p:commandLink value="Ajouter un sujet" action="#{sujetController.showCreate}"/><br />
+                </h:form>
+            </ui:define>
+            <ui:define name="content">	
+                
+                <div class="span3 offset2">Liste des Cadres</div>
+                <p:messages for="update"/>
+                <h:form>
                 <p:dataTable value="#{etudiantController.all}" var="etudiant">
                 <p:column headerText="Nom et Prenom">  
                     <p:commandLink value="#{etudiant.nom}" />  
@@ -56,9 +55,9 @@ and open the template in the editor.
                     <p:commandButton id="selectButton" value="modifier" action="#{etudiantController.showEdit(etudiant)}" />  
                 </p:column>  
             </p:dataTable>
-            </h:form>
+             </h:form>
 
-        </h:body>
-
-    </f:view>
+            </ui:define>
+        </ui:composition>
+    </h:body>
 </html>

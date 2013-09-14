@@ -16,6 +16,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
+import javax.persistence.Version;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -40,6 +41,9 @@ public class Sujet implements Serializable {
     @Basic(optional = false)
     @Column(name = "id")
     private Integer id;
+    @Version
+    @Column(name = "optimistick_lock")
+    private int version;
     @Size(max = 255)
     @Column(name = "description")
     private String description;
@@ -74,6 +78,14 @@ public class Sujet implements Serializable {
         this.id = id;
     }
 
+    public int getVersion() {
+        return version;
+    }
+
+    public void setVersion(int version) {
+        this.version = version;
+    }
+    
     public String getDescription() {
         return description;
     }
