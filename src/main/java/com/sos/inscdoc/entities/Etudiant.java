@@ -80,8 +80,9 @@ public class Etudiant implements Serializable {
     @Size(min = 1, max = 45)
     @Column(name = "cin")
     private String cin;
+    @Size(min = 1, max = 15)
     @Column(name = "telephone")
-    private Integer telephone;
+    private String telephone;
     // @Pattern(regexp="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?", message="Invalid email")//if the field contains email address consider using this annotation to enforce field validation
     @Size(max = 45)
     @Column(name = "email")
@@ -167,11 +168,11 @@ public class Etudiant implements Serializable {
         this.cin = cin;
     }
 
-    public Integer getTelephone() {
+    public String getTelephone() {
         return telephone;
     }
 
-    public void setTelephone(Integer telephone) {
+    public void setTelephone(String telephone) {
         this.telephone = telephone;
     }
 

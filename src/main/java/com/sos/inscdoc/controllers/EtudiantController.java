@@ -26,14 +26,14 @@ public class EtudiantController implements Serializable {
     @Inject
     private EtudiantFacade etudiantService;
     private Etudiant current = new Etudiant();
-    private Etudiant newEtudiant = new Etudiant();
+    private Etudiant newEtudiant;
     private List<Etudiant> etudiant;
 
     /**
      * Creates a new instance of EtudiantController
      */
     // ======================================
-    // = Attributes =
+    // = Constructor =
     // ======================================
     public EtudiantController() {
     }
@@ -47,12 +47,11 @@ public class EtudiantController implements Serializable {
     }
 
     public String showList() {
-        this.newEtudiant = null;
         return "list?faces-redirect=true";
     }
 
     public String showCreate() {
-        this.newEtudiant = new Etudiant();
+        newEtudiant = new Etudiant();
         return "add?faces-redirect=true";
     }
     // ======================================
