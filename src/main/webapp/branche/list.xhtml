@@ -16,7 +16,7 @@ and open the template in the editor.
         <ui:composition template="../resources/template.xhtml">
             <ui:define name="left">
                 <h:form>
-                <p:commandLink value="Ajouter un sujet" action="#{brancheController.showCreate}"/><br />
+                <p:commandLink value="Ajouter une Formation" action="#{brancheController.showCreate}"/><br />
                 </h:form>
             </ui:define>
             <ui:define name="content">	
@@ -27,15 +27,12 @@ and open the template in the editor.
                     <p:dataTable value="#{brancheController.all}" var="branche"
                                  paginator="true" rows="5" sortMode="multiple">
                         <p:column filterBy="#{branche.intitule}" headerText="Intitulé">  
-                            <p:commandLink value="#{branche.intitule}" />  
+                            <h:commandLink action="#{brancheController.showEdit(branche)}" value="#{branche.intitule}" />  
                         </p:column>  
                         <p:column headerText="Déscription">  
                             <h:outputText value="#{branche.description}" />  
                         </p:column>  
-                        
-                            <p:commandButton id="selectButton" value="modifier" action="#{brancheController.showEdit(sujet)}" />  
-
-                         
+                       
                     </p:dataTable>
                 </h:form>
 
