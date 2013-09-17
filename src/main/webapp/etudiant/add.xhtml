@@ -81,7 +81,9 @@
                 </p:selectOneMenu>  
                 <p:message for="marie"/>
                     
-                
+                <p:outputLabel value="Password" />  
+                <h:inputSecret id="password" value="#{etudiantController.comptes.password}" />  
+                <p:message for="password"/>
             </p:panelGrid>
                 <h:commandButton value="ajouter" action="#{etudiantController.doCreate}"/>
              </h:form>

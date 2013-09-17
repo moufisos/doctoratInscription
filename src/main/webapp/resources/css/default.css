@@ -1,6 +1,7 @@
 body {
-    background: url('../images/bg.png') repeat-x fixed 0 0 transparent;
+    background: url("../images/bg.png") repeat-x fixed 0 0 transparent;
     color: #333333;
+    background-color: #036fab;
     font-family: Arial,Verdana,Helvetica,sans-serif;
     font-size: 12px;
     margin: 0;

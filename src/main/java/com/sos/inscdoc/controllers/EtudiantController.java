@@ -4,8 +4,12 @@
  */
 package com.sos.inscdoc.controllers;
 
+import com.sos.inscdoc.entities.Comptes;
 import com.sos.inscdoc.entities.Etudiant;
+import com.sos.inscdoc.entities.Groupes;
+import com.sos.inscdoc.services.ComptesFacade;
 import com.sos.inscdoc.services.EtudiantFacade;
+import com.sos.inscdoc.services.GroupesFacade;
 import java.io.Serializable;
 import java.util.List;
 import javax.inject.Named;
@@ -28,6 +32,14 @@ public class EtudiantController implements Serializable {
     private Etudiant current = new Etudiant();
     private Etudiant newEtudiant = new Etudiant();
     private List<Etudiant> etudiant;
+    
+    @Inject
+    private ComptesFacade comptesService;
+    private Comptes comptes = new Comptes();
+    
+    @Inject
+    private GroupesFacade groupesService;
+    private Groupes leGroupe = new Groupes();
 
     /**
      * Creates a new instance of EtudiantController
@@ -53,6 +65,9 @@ public class EtudiantController implements Serializable {
 
     public String showCreate() {
         this.newEtudiant = new Etudiant();
+        this.comptes = new Comptes();
+        this.leGroupe = new Groupes();
+        leGroupe = groupesService.find(1);
         return "add?faces-redirect=true";
     }
     // ======================================
@@ -64,6 +79,12 @@ public class EtudiantController implements Serializable {
     }
 
     public String doCreate() {
+        this.comptes.setCne(newEtudiant.getCne());
+        this.comptes.setEmail(newEtudiant.getEmail());
+        this.comptes.setLeGroupe(leGroupe);
+        comptesService.create(comptes);
+        
+        
         etudiantService.create(newEtudiant);
         return showList();
     }
@@ -91,4 +112,22 @@ public class EtudiantController implements Serializable {
     public void setNewEtudiant(Etudiant newEtudiant) {
         this.newEtudiant = newEtudiant;
     }
+
+    public Comptes getComptes() {
+        return comptes;
+    }
+
+    public void setComptes(Comptes comptes) {
+        this.comptes = comptes;
+    }
+
+    public Groupes getLeGroupe() {
+        return leGroupe;
+    }
+
+    public void setLeGroupe(Groupes leGroupe) {
+        this.leGroupe = leGroupe;
+    }
+    
+    
 }
