@@ -13,12 +13,15 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.UniqueConstraint;
 import javax.persistence.Version;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -48,11 +51,10 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Etudiant.findByDanteN", query = "SELECT e FROM Etudiant e WHERE e.danteN = :danteN")})
 public class Etudiant implements Serializable {
     private static final long serialVersionUID = 1L;
+   
     /**************
     ***Attributes**
     ***************/
-    
-    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
@@ -73,7 +75,7 @@ public class Etudiant implements Serializable {
     private String prenom;
     @Basic(optional = false)
     @NotNull
-    @Column(name = "cne")
+    @Column(name = "cne", unique = true)//add unique constraint
     private int cne;
     @Basic(optional = false)
     @NotNull
@@ -102,8 +104,14 @@ public class Etudiant implements Serializable {
     @Column(name = "danteN")
     @Temporal(TemporalType.DATE)
     private Date danteN;
-    @OneToMany(mappedBy = "etudiantid")
+    @Column(name = "password")
+    @Size(max = 45)
+    private String password;
+    @OneToMany(mappedBy = "etudiantId")
     private Collection<Qualification> qualificationCollection;
+    @JoinColumn(name = "groupsid", referencedColumnName = "id")
+    @ManyToOne
+    private Groups groupsId;
 
     public Etudiant() {
     }
@@ -233,6 +241,23 @@ public class Etudiant implements Serializable {
         this.qualificationCollection = qualificationCollection;
     }
 
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public Groups getGroupsId() {
+        return groupsId;
+    }
+
+    public void setGroupsId(Groups groupsId) {
+        this.groupsId = groupsId;
+    }
+
+        
     @Override
     public int hashCode() {
         int hash = 0;

@@ -46,7 +46,13 @@
                 
                 <p:column style="width:4%">  
                     <p:commandButton id="selectButton" value="modifier" action="#{etudiantController.showEdit(etudiant)}" />  
-                </p:column>  
+                </p:column>
+                    <p:column style="width:4%">  
+                    <p:commandButton id="viewButton" value="afficher" action="#{etudiantController.showView(etudiant)}" />  
+                </p:column> 
+                    <p:column style="width:4%">  
+                    <p:commandButton id="deleteButon" value="supprimer" action="#{etudiantController.doDelete(etudiant)}" />  
+                </p:column> 
             </p:dataTable>
              </h:form>
 

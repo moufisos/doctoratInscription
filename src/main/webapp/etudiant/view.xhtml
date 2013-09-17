@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <h1>Liste des sujet</h1>
+    </h:head>
+    <h:body>
+        <ui:composition template="../resources/template.xhtml">
+            <ui:define name="left">
+                <h:form>
+                <p:commandLink value="Ajouter un sujet" action="#{sujetController.showCreate}"/><br />
+                </h:form>
+            </ui:define>
+            <ui:define name="content">	
+                
+                <div class="span3 offset2">Liste des Cadres</div>
+                <p:messages for="update"/>
+                <h:form>
+                <p:panelGrid columns="2">
+                <p:outputLabel value="Nom" />
+                <p:outputLabel id="nom" value="#{etudiantController.current.nom}"/>  
+               
+                
+                <p:outputLabel value="Prenom" />
+                <p:outputLabel id="prenom" value="#{etudiantController.current.prenom}" />  
+                
+                
+                <p:outputLabel value="CNE :" />  
+                <p:outputLabel id="cne" value="#{etudiantController.current.cne}" />  
+             
+                
+                <p:outputLabel value="CIN" />  
+                <p:outputLabel id="cin" value="#{etudiantController.current.cin}" />  
+                    
+                
+                <p:outputLabel value="Date de naissance"/> 
+                <p:outputLabel value="#{etudiantController.current.danteN}"  />
+            
+                
+                <p:outputLabel value="Adresse" />  
+                <p:outputLabel id="adresse" value="#{etudiantController.current.adresse}" />  
+                <p:message for="adresse"/>
+                
+                <p:outputLabel value="email" />  
+                <p:outputLabel id="email" value="#{etudiantController.current.email}" />  
+             
+                
+                <p:outputLabel value="Nationalité" />  
+                <p:outputLabel id="nationalite" value="#{etudiantController.current.nationalite}" />  
+                
+                
+                <p:outputLabel value="Téléphone" />  
+                <p:outputLabel id="telephone" value="#{etudiantController.current.telephone}" />  
+                
+                
+                <p:outputLabel value="fonctionnaire" />  
+                <p:outputLabel value="#{etudiantController.current.fonctionnaire}"/>  
+                
+                
+                <p:outputLabel value="marié" />  
+                <p:outputLabel value="#{etudiantController.current.marie}"/>  
+                
+                    
+                
+            </p:panelGrid>
+                
+            </h:form>
+
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>

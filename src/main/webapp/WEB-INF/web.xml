@@ -21,4 +21,32 @@
     <welcome-file-list>
         <welcome-file>index.xhtml</welcome-file>
     </welcome-file-list>
+    <security-constraint>
+        <display-name>all</display-name>
+        <web-resource-collection>
+            <web-resource-name>all</web-resource-name>
+            <description/>
+            <url-pattern>/etudiant/view</url-pattern>
+        </web-resource-collection>
+        <web-resource-collection>
+            <web-resource-name>etudiant</web-resource-name>
+            <description/>
+            <url-pattern>/etudiant/edit</url-pattern>
+        </web-resource-collection>
+        <auth-constraint>
+            <description>les candidats</description>
+            <role-name>candidat</role-name>
+        </auth-constraint>
+    </security-constraint>
+    <login-config>
+        <auth-method>FORM</auth-method>
+        <form-login-config>
+            <form-login-page>/security/login.xhtml</form-login-page>
+            <form-error-page>/index.xhtml</form-error-page>
+        </form-login-config>
+    </login-config>
+    <security-role>
+        <description/>
+        <role-name>candidat</role-name>
+    </security-role>
 </web-app>

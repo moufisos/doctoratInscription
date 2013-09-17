@@ -80,6 +80,10 @@
                     <f:selectItem itemLabel="Marié" itemValue="marie" />  
                 </p:selectOneMenu>  
                 <p:message for="marie"/>
+                
+                <p:outputLabel value="Mot de passe" />  
+                <p:inputText id="password" value="#{etudiantController.newEtudiant.password}" />  
+                <p:message for="password"/>
                     
                 
             </p:panelGrid>

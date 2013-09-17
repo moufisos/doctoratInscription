@@ -1,59 +1,53 @@
 /*
- * To change this template, choose Tools | Templates
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
 package com.sos.inscdoc.controllers;
 
-import com.sos.inscdoc.entities.Etudiant;
 import com.sos.inscdoc.entities.Groups;
-import com.sos.inscdoc.services.EtudiantFacade;
 import com.sos.inscdoc.services.GroupsFacade;
 import java.io.Serializable;
 import java.util.List;
-import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
+import javax.inject.Named;
 
 /**
  *
- * @author mohammedoufi
+ * @author mab.salhi
  */
-@Named(value = "etudiantController")
+@Named(value = "groupsController")
 @SessionScoped
-public class EtudiantController implements Serializable {
-
+public class GroupsController implements Serializable{
     // ======================================
     // = Attributes =
     // ======================================
     @Inject
-    private EtudiantFacade etudiantService;
-    private Etudiant current = new Etudiant();
-    private Etudiant newEtudiant;
-    private List<Etudiant> etudiant;
-
-    private Groups leGroupe = new Groups();
-    @Inject
     private GroupsFacade groupsService;
-    
+    private Groups current = new Groups();
+    private Groups newGroups;
+    private List<Groups> groupses;
+
     /**
-     * Creates a new instance of EtudiantController
+     * Creates a new instance of GroupsController
      */
     // ======================================
     // = Constructor =
     // ======================================
-    public EtudiantController() {
+    public GroupsController() {
     }
 
     // ======================================
     // = Navigations Methodes =
     // ======================================
-    public String showEdit(Etudiant etudiant) {
-        current = etudiant;
+    public String showEdit(Groups groups) {
+        current = groups;
         return "edit?faces-redirect=true";
     }
 
-    public String showView(Etudiant etudiant) {
-        current = etudiant;
+    public String showView(Groups groups) {
+        current = groups;
         return "view?faces-redirect=true";
     }
     
@@ -62,60 +56,50 @@ public class EtudiantController implements Serializable {
     }
 
     public String showCreate() {
-        newEtudiant = new Etudiant();
+        newGroups = new Groups();
         return "add?faces-redirect=true";
     }
     // ======================================
     // = Business Methodes =
     // ======================================
 
-    public List<Etudiant> getAll() {
-        return etudiantService.findAll();
+    public List<Groups> getAll() {
+        return groupsService.findAll();
     }
 
     public String doCreate() {
-        leGroupe = groupsService.find(1);
-        newEtudiant.setGroupsId(leGroupe);
-        etudiantService.create(newEtudiant);
+        groupsService.create(newGroups);
         return showList();
     }
 
     public String doUpdate() {
-        etudiantService.edit(current);
+        groupsService.edit(current);
         return "list?faces-redirect";
     }
     
-    public String doDelete(Etudiant etudiant){
-        this.etudiantService.remove(etudiant);
+    public String doDelete(Groups groups){
+        this.groupsService.remove(groups);
         this.getAll();
         return this.showList();
     }
+
     // ======================================
     // = getters & setters =
     // ======================================
-
-    public Etudiant getCurrent() {
+    public Groups getCurrent() {
         return current;
     }
 
-    public void setCurrent(Etudiant current) {
+    public void setCurrent(Groups current) {
         this.current = current;
     }
 
-    public Etudiant getNewEtudiant() {
-        return newEtudiant;
+    public Groups getNewGroups() {
+        return newGroups;
     }
 
-    public void setNewEtudiant(Etudiant newEtudiant) {
-        this.newEtudiant = newEtudiant;
-    }
-
-    public Groups getLeGroupe() {
-        return leGroupe;
-    }
-
-    public void setLeGroupe(Groups leGroupe) {
-        this.leGroupe = leGroupe;
+    public void setNewGroups(Groups newGroups) {
+        this.newGroups = newGroups;
     }
     
     

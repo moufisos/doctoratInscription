@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <h1>Liste des sujet</h1>
+    </h:head>
+    <h:body>
+        <ui:composition template="../resources/template.xhtml">
+            <ui:define name="left">
+                <h:form>
+                <p:commandLink value="Afficher la liste" action="#{groupsController.showList}"/><br />
+                </h:form>
+            </ui:define>
+            <ui:define name="content">	
+                
+                <div class="span3 offset2">Liste des Cadres</div>
+                <p:messages for="update"/>
+                <h:form>
+                <p:panelGrid columns="3">
+                    <p:outputLabel value="intitulé :" />
+                    <p:inputText id="intitule" value="#{groupsController.newGroups.intitule}"/>
+                    <p:message for="intitule" />
+                    
+                   
+                </p:panelGrid>
+                <h:commandButton value="ajouter" action="#{groupsController.doCreate}"/>
+             </h:form>
+
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>

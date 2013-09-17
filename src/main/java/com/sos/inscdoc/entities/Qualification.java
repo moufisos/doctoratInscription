@@ -111,7 +111,7 @@ public class Qualification implements Serializable {
     private Date date1inscription;
     @JoinColumn(name = "etudiantid", referencedColumnName = "id")
     @ManyToOne
-    private Etudiant etudiantid;
+    private Etudiant etudiantId;
 
     public Qualification() {
     }
@@ -254,13 +254,15 @@ public class Qualification implements Serializable {
         this.date1inscription = date1inscription;
     }
 
-    public Etudiant getEtudiantid() {
-        return etudiantid;
+    public Etudiant getEtudiantId() {
+        return etudiantId;
     }
 
-    public void setEtudiantid(Etudiant etudiantid) {
-        this.etudiantid = etudiantid;
+    public void setEtudiantId(Etudiant etudiantId) {
+        this.etudiantId = etudiantId;
     }
+
+    
 
     @Override
     public int hashCode() {
