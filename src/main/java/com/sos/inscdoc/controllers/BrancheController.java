@@ -22,7 +22,7 @@ import javax.inject.Inject;
 public class BrancheController implements Serializable{
     @Inject
     private BrancheFacade brancheService;
-    private Branche newBranche = new Branche(); 
+    private Branche newBranche;
     private Branche current = new Branche(); 
     private List<Branche> branche;
     /**
@@ -31,6 +31,15 @@ public class BrancheController implements Serializable{
     public BrancheController() {
     }
 
+    public Branche getCurrent() {
+        return current;
+    }
+
+    public void setCurrent(Branche current) {
+        this.current = current;
+    }
+    
+    
     public Branche getNewBranche() {
         return newBranche;
     }
@@ -39,25 +48,18 @@ public class BrancheController implements Serializable{
         this.newBranche = newBranche;
     }
 
-    public List<Branche> getBranche() {
-        return branche;
-    }
-
-    public void setBranche(List<Branche> branche) {
-        this.branche = branche;
-    }
     
-    public String ShowList(){
+    public String showList(){
      return "list?faces-redirect=true";
     }
     
-    public String ShowEdit(Branche current){
-        this.current = current;
+    public String showEdit(Branche branche){
+        current = branche;
         return "edit?faces-redirect=true";
     }
     
-    public String showCreate(Branche newBranche){
-        this.newBranche = newBranche;
+   public String showCreate(){
+        newBranche = new Branche();
         return "add?faces-redirect=true";
     }
     
@@ -65,14 +67,14 @@ public class BrancheController implements Serializable{
         return brancheService.findAll();
     }
     
-    public String doCreate(Branche newBranche){
+    public String doCreate(){
         brancheService.create(newBranche);
-        return "list?faces-redirect=true";
+        return showList();
     }
     
-    public String doUpdate(Branche current){
+    public String doUpdate(){
         brancheService.edit(current);
-        return "list?faces-redirect=true";
+        return showList();
     }
     
     
