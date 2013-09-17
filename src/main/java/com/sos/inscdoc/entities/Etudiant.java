@@ -7,6 +7,7 @@ package com.sos.inscdoc.entities;
 import java.io.Serializable;
 import java.util.Collection;
 import java.util.Date;
+import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -102,8 +103,8 @@ public class Etudiant implements Serializable {
     @Column(name = "danteN")
     @Temporal(TemporalType.DATE)
     private Date danteN;
-    @OneToMany(mappedBy = "etudiantid")
-    private Collection<Qualification> qualificationCollection;
+    @OneToMany(mappedBy = "etudiantId")
+    private List<Qualification> qualification;
 
     public Etudiant() {
     }
@@ -224,14 +225,7 @@ public class Etudiant implements Serializable {
         this.danteN = danteN;
     }
 
-    @XmlTransient
-    public Collection<Qualification> getQualificationCollection() {
-        return qualificationCollection;
-    }
-
-    public void setQualificationCollection(Collection<Qualification> qualificationCollection) {
-        this.qualificationCollection = qualificationCollection;
-    }
+    
 
     @Override
     public int hashCode() {

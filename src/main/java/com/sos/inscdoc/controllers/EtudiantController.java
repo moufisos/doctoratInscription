@@ -69,7 +69,7 @@ public class EtudiantController implements Serializable {
 
     public String doUpdate() {
         etudiantService.edit(current);
-        return "list?faces-redirect";
+        return showList();
     }
     // ======================================
     // = getters & setters =

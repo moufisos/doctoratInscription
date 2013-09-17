@@ -19,6 +19,9 @@ and open the template in the editor.
         </h:head>
 
         <h:body>
+            <ui:composition template="../resources/template.xhtml">
+           
+            <ui:define name="content">	
            <h:form>
                 <p:panelGrid columns="3">
                     <p:outputLabel value="intitulé :" />
@@ -35,7 +38,9 @@ and open the template in the editor.
                 </p:panelGrid>
                 <h:commandButton value="modifier" action="#{sujetController.doUpdate}"/>
             </h:form>
-
+            
+            </ui:define>
+            </ui:composition>
         </h:body>
 
     </f:view>

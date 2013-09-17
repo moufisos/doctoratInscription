@@ -6,6 +6,7 @@ package com.sos.inscdoc.entities;
 
 import java.io.Serializable;
 import java.util.Collection;
+import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -52,8 +53,8 @@ public class Branche implements Serializable {
     @Size(max = 255)
     @Column(name = "description")
     private String description;
-    @OneToMany(mappedBy = "brancheid")
-    private Collection<Sujet> sujetCollection;
+    @OneToMany(mappedBy = "brancheId")
+    private List<Sujet> sujet;
 
     public Branche() {
     }
@@ -99,14 +100,7 @@ public class Branche implements Serializable {
         this.description = description;
     }
 
-    @XmlTransient
-    public Collection<Sujet> getSujetCollection() {
-        return sujetCollection;
-    }
-
-    public void setSujetCollection(Collection<Sujet> sujetCollection) {
-        this.sujetCollection = sujetCollection;
-    }
+    
 
     @Override
     public int hashCode() {

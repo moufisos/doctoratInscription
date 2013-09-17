@@ -56,7 +56,7 @@ public class Sujet implements Serializable {
     private String intitule;
     @JoinColumn(name = "brancheid", referencedColumnName = "id")
     @ManyToOne
-    private Branche brancheid;
+    private Branche brancheId;
 
     public Sujet() {
     }
@@ -110,12 +110,12 @@ public class Sujet implements Serializable {
         this.intitule = intitule;
     }
 
-    public Branche getBrancheid() {
-        return brancheid;
+    public Branche getBrancheId() {
+        return brancheId;
     }
 
-    public void setBrancheid(Branche brancheid) {
-        this.brancheid = brancheid;
+    public void setBrancheId(Branche brancheId) {
+        this.brancheId = brancheId;
     }
 
     @Override

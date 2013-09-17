@@ -34,11 +34,11 @@ import javax.xml.bind.annotation.XmlRootElement;
 @NamedQueries({
     @NamedQuery(name = "Qualification.findAll", query = "SELECT q FROM Qualification q"),
     @NamedQuery(name = "Qualification.findById", query = "SELECT q FROM Qualification q WHERE q.id = :id"),
-    @NamedQuery(name = "Qualification.findByPartiedelivrante", query = "SELECT q FROM Qualification q WHERE q.partiedelivrante = :partiedelivrante"),
+    @NamedQuery(name = "Qualification.findByPartiedelivrante", query = "SELECT q FROM Qualification q WHERE q.partieDelivrante = :partiedelivrante"),
     @NamedQuery(name = "Qualification.findByMension", query = "SELECT q FROM Qualification q WHERE q.mension = :mension"),
-    @NamedQuery(name = "Qualification.findByDateobtention", query = "SELECT q FROM Qualification q WHERE q.dateobtention = :dateobtention"),
-    @NamedQuery(name = "Qualification.findByDplome", query = "SELECT q FROM Qualification q WHERE q.dplome = :dplome"),
-    @NamedQuery(name = "Qualification.findByDesciptiondipolme", query = "SELECT q FROM Qualification q WHERE q.desciptiondipolme = :desciptiondipolme"),
+    @NamedQuery(name = "Qualification.findByDateobtention", query = "SELECT q FROM Qualification q WHERE q.dateObtention = :dateobtention"),
+    @NamedQuery(name = "Qualification.findByDiplome", query = "SELECT q FROM Qualification q WHERE q.diplome = :diplome"),
+    @NamedQuery(name = "Qualification.findByDesciptiondipolme", query = "SELECT q FROM Qualification q WHERE q.desciptionDipolme = :desciptiondipolme"),
     @NamedQuery(name = "Qualification.findByClassement", query = "SELECT q FROM Qualification q WHERE q.classement = :classement"),
     @NamedQuery(name = "Qualification.findByNote1", query = "SELECT q FROM Qualification q WHERE q.note1 = :note1"),
     @NamedQuery(name = "Qualification.findByNote2", query = "SELECT q FROM Qualification q WHERE q.note2 = :note2"),
@@ -46,7 +46,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Qualification.findByNote4", query = "SELECT q FROM Qualification q WHERE q.note4 = :note4"),
     @NamedQuery(name = "Qualification.findByNote5", query = "SELECT q FROM Qualification q WHERE q.note5 = :note5"),
     @NamedQuery(name = "Qualification.findByNote6", query = "SELECT q FROM Qualification q WHERE q.note6 = :note6"),
-    @NamedQuery(name = "Qualification.findByDate1inscription", query = "SELECT q FROM Qualification q WHERE q.date1inscription = :date1inscription")})
+    @NamedQuery(name = "Qualification.findByDateinscription", query = "SELECT q FROM Qualification q WHERE q.dateInscription = :dateinscription")})
 public class Qualification implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
@@ -61,7 +61,7 @@ public class Qualification implements Serializable {
     @NotNull
     @Size(min = 1, max = 45)
     @Column(name = "partiedelivrante")
-    private String partiedelivrante;
+    private String partieDelivrante;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 45)
@@ -71,15 +71,15 @@ public class Qualification implements Serializable {
     @NotNull
     @Column(name = "dateobtention")
     @Temporal(TemporalType.DATE)
-    private Date dateobtention;
+    private Date dateObtention;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 45)
-    @Column(name = "dplome")
-    private String dplome;
+    @Column(name = "diplome")
+    private String diplome;
     @Size(max = 255)
     @Column(name = "desciptiondipolme")
-    private String desciptiondipolme;
+    private String desciptionDipolme;
     @Column(name = "classement")
     private Integer classement;
     @Basic(optional = false)
@@ -106,12 +106,12 @@ public class Qualification implements Serializable {
     @NotNull
     @Column(name = "note6")
     private float note6;
-    @Column(name = "date1inscription")
+    @Column(name = "dateinscription")
     @Temporal(TemporalType.DATE)
-    private Date date1inscription;
+    private Date dateInscription;
     @JoinColumn(name = "etudiantid", referencedColumnName = "id")
     @ManyToOne
-    private Etudiant etudiantid;
+    private Etudiant etudiantId;
 
     public Qualification() {
     }
@@ -122,10 +122,10 @@ public class Qualification implements Serializable {
 
     public Qualification(Integer id, String partiedelivrante, String mension, Date dateobtention, String dplome, float note1, float note2, float note3, float note4, float note5, float note6) {
         this.id = id;
-        this.partiedelivrante = partiedelivrante;
+        this.partieDelivrante = partiedelivrante;
         this.mension = mension;
-        this.dateobtention = dateobtention;
-        this.dplome = dplome;
+        this.dateObtention = dateobtention;
+        this.diplome = dplome;
         this.note1 = note1;
         this.note2 = note2;
         this.note3 = note3;
@@ -150,12 +150,12 @@ public class Qualification implements Serializable {
         this.version = version;
     }
 
-    public String getPartiedelivrante() {
-        return partiedelivrante;
+    public String getPartieDelivrante() {
+        return partieDelivrante;
     }
 
-    public void setPartiedelivrante(String partiedelivrante) {
-        this.partiedelivrante = partiedelivrante;
+    public void setPartieDelivrante(String partieDelivrante) {
+        this.partieDelivrante = partieDelivrante;
     }
 
     public String getMension() {
@@ -167,27 +167,27 @@ public class Qualification implements Serializable {
     }
 
     public Date getDateobtention() {
-        return dateobtention;
+        return dateObtention;
     }
 
-    public void setDateobtention(Date dateobtention) {
-        this.dateobtention = dateobtention;
+    public void setDateobtention(Date dateObtention) {
+        this.dateObtention = dateObtention;
     }
 
     public String getDplome() {
-        return dplome;
+        return diplome;
     }
 
     public void setDplome(String dplome) {
-        this.dplome = dplome;
+        this.diplome = dplome;
     }
 
-    public String getDesciptiondipolme() {
-        return desciptiondipolme;
+    public String getDesciptionDipolme() {
+        return desciptionDipolme;
     }
 
-    public void setDesciptiondipolme(String desciptiondipolme) {
-        this.desciptiondipolme = desciptiondipolme;
+    public void setDesciptiondipolme(String desciptionDipolme) {
+        this.desciptionDipolme = desciptionDipolme;
     }
 
     public Integer getClassement() {
@@ -246,21 +246,31 @@ public class Qualification implements Serializable {
         this.note6 = note6;
     }
 
-    public Date getDate1inscription() {
-        return date1inscription;
+    public Date getDateInscription() {
+        return dateInscription;
     }
 
-    public void setDate1inscription(Date date1inscription) {
-        this.date1inscription = date1inscription;
+    public void setDateInscription(Date dateInscription) {
+        this.dateInscription = dateInscription;
     }
 
-    public Etudiant getEtudiantid() {
-        return etudiantid;
+    public Etudiant getEtudiantId() {
+        return etudiantId;
     }
 
-    public void setEtudiantid(Etudiant etudiantid) {
-        this.etudiantid = etudiantid;
+    public void setEtudiantId(Etudiant etudiantId) {
+        this.etudiantId = etudiantId;
     }
+
+    public Date getDateObtention() {
+        return dateObtention;
+    }
+
+    public void setDateObtention(Date dateObtention) {
+        this.dateObtention = dateObtention;
+    }
+
+    
 
     @Override
     public int hashCode() {
